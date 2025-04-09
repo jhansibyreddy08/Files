@@ -26,17 +26,18 @@
     <table id="csvTable"></table>
     <script>
         fetch('Input_Details.csv')
-            .then(response => response.text())
-            .then(data => {
-                const rows = data.split('\\n');
+            const rows = data.split('\\n');
                 let table = '<tr>';
-                rows[0].split(',').forEach(header => {
+                const headers = rows[0].split(',');
+                headers.forEach(header => {
                     table += `<th>${header}</th>`;
                 });
                 table += '</tr>';
                 for (let i = 1; i < rows.length; i++) {
+                    if (rows[i].trim() === '') continue; // Skip empty rows
                     table += '<tr>';
-                    rows[i].split(',').forEach(cell => {
+                    const cells = rows[i].split(',');
+                    cells.forEach(cell => {
                         table += `<td>${cell}</td>`;
                     });
                     table += '</tr>';
