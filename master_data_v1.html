@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>master_data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Please find the details of master table below:</h1>
+    <table id="csvTable"></table>
+    <script>
+        fetch('Input_Details.csv')
+            const rows = data.split('\\n');
+                let table = '<tr>';
+                const headers = rows[0].split(',');
+                headers.forEach(header => {
+                    table += `<th>${header}</th>`;
+                });
+                table += '</tr>';
+                for (let i = 1; i < rows.length; i++) {
+                    if (rows[i].trim() === '') continue; // Skip empty rows
+                    table += '<tr>';
+                    const cells = rows[i].split(',');
+                    cells.forEach(cell => {
+                        table += `<td>${cell}</td>`;
+                    });
+                    table += '</tr>';
+                }
+                document.getElementById('csvTable').innerHTML = table;
+            });
+    </script>
+</body>
+</html>
