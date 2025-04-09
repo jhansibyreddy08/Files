@@ -25,7 +25,7 @@
     <h1>CSV Data Table</h1>
     <table id="csvTable"></table>
     <script>
-        fetch('Input_details.csv')
+        fetch('Input_Details.csv')
             .then(response => response.text())
             .then(data => {
                 const rows = data.split('\n').filter(row => row.trim() !== '');
